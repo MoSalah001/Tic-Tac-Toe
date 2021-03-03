@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#grid {
+    display: grid;
+    grid-template-areas:
+    "title title title title title"
+    "playerOne 1st 2nd 3rd playerTwo"
+    "playerOne 4th 5th 6th playerTwo"
+    "playerOne 7th 8th 9th playerTwo"
+    ;
+}
+
+.game {
+    border: 2px solid red;
+    height: 20vh;
+    border-collapse: collapse;
+}
+
+#title {
+    grid-area: title;
+    text-align: center;
+    font-size: 8vh;
+}
+
+#it1 {
+    grid-area: 1st;
+}
+
+#it2 {
+    grid-area: 2nd;
+}
+
+#it3 {
+    grid-area: 3rd;
+}
+
+#it4 {
+    grid-area: 4th;
+}
+
+#it5 {
+    grid-area: 5th;
+}
+
+#it6 {
+    grid-area: 6th;
+}
+
+#it7 {
+    grid-area: 7th;
+}
+
+#it8 {
+    grid-area:8th;
+}
+
+#it9 {
+    grid-area:9th;
+}
+
+#player1 {
+    grid-area: playerOne;
+    text-align: center;
+}
+
+#player2 {
+    grid-area: playerTwo;
+    text-align: center;
+}
