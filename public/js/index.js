@@ -1,6 +1,10 @@
 const divs = document.querySelectorAll(".game");
 
-let img = document.createElement("img")
+let counter = 0;
+
+const circle = "public/Mat/circle.svg"
+
+const cross = "public/Mat/cross.svg"
 
 const player1 = {
     win : 0,
@@ -14,12 +18,65 @@ const player2 = {
     sign : "public/Mat/cross.svg"
 }
 
+const track = [];
 
-function action() {
-    img.src=`${player1.sign}`
-    this.appendChild(img);
+for(let i = 0; i< divs.length; i++) {
+    divs[i].addEventListener('click', action);
+    let x = document.createElement("img");
+    divs[i].append(x);
 }
 
-for(i in divs) {
-    divs[i].addEventListener('click', action)
+function action() {
+    if(this.firstChild.src === "") {
+        counter++;
+        track.push(counter)
+        let m = this.firstChild.src;
+        track.forEach(element => {
+            if(element % 2 == 0){
+                this.firstChild.src = circle;
+                check()
+            } else{ 
+                this.firstChild.src = cross;
+                check()
+            }
+            if (track.length == 9) {
+                console.log("draw");
+            }
+        });
+    }
+        
+}
+
+
+function check() {
+            let host = "http://127.0.0.1:5500/";
+            let crs = host+cross;
+            let crc = host+circle;
+        if( // cross wins  player 2
+                (divs[0].firstChild.src === crs && divs[1].firstChild.src === crs && divs[2].firstChild.src === crs) || 
+                (divs[3].firstChild.src === crs && divs[4].firstChild.src === crs && divs[5].firstChild.src === crs) || 
+                (divs[6].firstChild.src === crs && divs[7].firstChild.src === crs && divs[8].firstChild.src === crs) ||
+                (divs[0].firstChild.src === crs && divs[3].firstChild.src === crs && divs[6].firstChild.src === crs) || 
+                (divs[1].firstChild.src === crs && divs[4].firstChild.src === crs && divs[7].firstChild.src === crs) ||
+                (divs[2].firstChild.src === crs && divs[5].firstChild.src === crs && divs[8].firstChild.src === crs) ||
+                (divs[0].firstChild.src === crs && divs[4].firstChild.src === crs && divs[8].firstChild.src === crs) ||
+                (divs[2].firstChild.src === crs && divs[4].firstChild.src === crs && divs[6].firstChild.src === crs) 
+            ){
+                player2.win +=1;
+                player1.lose +=1;
+                console.log(player2.win);
+        } else if( // circle win player 1
+                (divs[0].firstChild.src === crc && divs[1].firstChild.src === crc && divs[2].firstChild.src === crc) || 
+                (divs[3].firstChild.src === crc && divs[4].firstChild.src === crc && divs[5].firstChild.src === crc) || 
+                (divs[6].firstChild.src === crc && divs[7].firstChild.src === crc && divs[8].firstChild.src === crc) ||
+                (divs[0].firstChild.src === crc && divs[3].firstChild.src === crc && divs[6].firstChild.src === crc) || 
+                (divs[1].firstChild.src === crc && divs[4].firstChild.src === crc && divs[7].firstChild.src === crc) ||
+                (divs[2].firstChild.src === crc && divs[5].firstChild.src === crc && divs[8].firstChild.src === crc) ||
+                (divs[0].firstChild.src === crc && divs[4].firstChild.src === crc && divs[8].firstChild.src === crc) ||
+                (divs[2].firstChild.src === crc && divs[4].firstChild.src === crc && divs[6].firstChild.src === crc)
+            ){
+                player1.win +=1;
+                player2.lose +=1   ; 
+                console.log(player1.win);
+    }
 }
