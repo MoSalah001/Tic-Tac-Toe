@@ -71,6 +71,13 @@
     text-align: center;
 }
 
+#player1 , #player2 {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 200px;
+    align-self: center;
+}
+
 img {
    max-width: 70%;
    max-height: 70%;
@@ -80,4 +87,19 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#cont {
+    width: 100%;
+    height: 50px;
+}
+
+#reset {
+    margin: 0 auto;
+    width: 20%;
+    display: none;
+}
+
+.shown {
+    display: block;
 }
