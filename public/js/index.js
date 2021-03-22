@@ -30,29 +30,22 @@ function action() {
     if(this.firstChild.src === "") {
         counter++;
         track.push(counter)
-        let m = this.firstChild.src;
-        track.forEach(element => {
-            if(element % 2 == 0){
-                this.firstChild.src = circle;
-                check()
-            } else{ 
-                this.firstChild.src = cross;
-                check()
-            }
-            if (track.length == 9) {
-                console.log("draw");
-            }
-        });
-    }
-        
+        if(counter % 2 == 0) {
+            this.firstChild.src = circle;
+            check()
+        } else if(!counter % 2 == 0) {
+            this.firstChild.src = cross;
+            check()
+        }
+    }      
 }
-
 
 function check() {
             let host = "http://127.0.0.1:5500/";
             let crs = host+cross;
             let crc = host+circle;
-        if( // cross wins  player 2
+        
+            if( // cross wins  player 2
                 (divs[0].firstChild.src === crs && divs[1].firstChild.src === crs && divs[2].firstChild.src === crs) || 
                 (divs[3].firstChild.src === crs && divs[4].firstChild.src === crs && divs[5].firstChild.src === crs) || 
                 (divs[6].firstChild.src === crs && divs[7].firstChild.src === crs && divs[8].firstChild.src === crs) ||
@@ -60,11 +53,9 @@ function check() {
                 (divs[1].firstChild.src === crs && divs[4].firstChild.src === crs && divs[7].firstChild.src === crs) ||
                 (divs[2].firstChild.src === crs && divs[5].firstChild.src === crs && divs[8].firstChild.src === crs) ||
                 (divs[0].firstChild.src === crs && divs[4].firstChild.src === crs && divs[8].firstChild.src === crs) ||
-                (divs[2].firstChild.src === crs && divs[4].firstChild.src === crs && divs[6].firstChild.src === crs) 
+                (divs[2].firstChild.src === crs && divs[4].firstChild.src === crs && divs[6].firstChild.src === crs)
             ){
-                player2.win +=1;
-                player1.lose +=1;
-                console.log(player2.win);
+                console.log("win");
         } else if( // circle win player 1
                 (divs[0].firstChild.src === crc && divs[1].firstChild.src === crc && divs[2].firstChild.src === crc) || 
                 (divs[3].firstChild.src === crc && divs[4].firstChild.src === crc && divs[5].firstChild.src === crc) || 
@@ -80,3 +71,4 @@ function check() {
                 console.log(player1.win);
     }
 }
+
