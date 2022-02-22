@@ -2,25 +2,29 @@ const divs = document.querySelectorAll(".game");
 
 let counter = 0;
 
-const circle = "public/Mat/circle.svg"
+const circle = "public/Mat/circle.svg";
 
-const cross = "public/Mat/cross.svg"
+const cross = "public/Mat/cross.svg";
 
 const resetbtn = document.querySelector("#reset")
-
-const player2 = {
-    win : 0,
-    lose : 0,
-    sign : "public/Mat/circle.svg",
-}
+const btnDark = document.querySelector("#btnDark")
 
 const player1 = {
     win : 0,
     lose : 0,
-    sign : "public/Mat/cross.svg"
+    sign : "./public/Mat/cross.svg"
+}
+
+const player2 = {
+    win : 0,
+    lose : 0,
+    sign : "./public/Mat/circle.svg"
 }
 
 const track = [];
+
+const toggle = document.querySelector(".btn");
+toggle.addEventListener('click',change)
 
 function play(){
     for(let i = 0; i< divs.length; i++) {
@@ -46,38 +50,43 @@ function action() {
 }
 
 function check() {
-            let host = "http://127.0.0.1:5500/";
-            let crs = host+cross;
-            let crc = host+circle;
+            let crs = 'cross';
+            let crc = 'circle';
             if( // cross wins  player 2
-                (divs[0].firstChild.src === crs && divs[1].firstChild.src === crs && divs[2].firstChild.src === crs) || 
-                (divs[3].firstChild.src === crs && divs[4].firstChild.src === crs && divs[5].firstChild.src === crs) || 
-                (divs[6].firstChild.src === crs && divs[7].firstChild.src === crs && divs[8].firstChild.src === crs) ||
-                (divs[0].firstChild.src === crs && divs[3].firstChild.src === crs && divs[6].firstChild.src === crs) || 
-                (divs[1].firstChild.src === crs && divs[4].firstChild.src === crs && divs[7].firstChild.src === crs) ||
-                (divs[2].firstChild.src === crs && divs[5].firstChild.src === crs && divs[8].firstChild.src === crs) ||
-                (divs[0].firstChild.src === crs && divs[4].firstChild.src === crs && divs[8].firstChild.src === crs) ||
-                (divs[2].firstChild.src === crs && divs[4].firstChild.src === crs && divs[6].firstChild.src === crs)
+                (divs[0].firstChild.src.includes(crs) === true && divs[1].firstChild.src.includes(crs) === true && divs[2].firstChild.src.includes(crs) === true) || 
+                (divs[3].firstChild.src.includes(crs) === true && divs[4].firstChild.src.includes(crs) === true && divs[5].firstChild.src.includes(crs) === true) || 
+                (divs[6].firstChild.src.includes(crs) === true && divs[7].firstChild.src.includes(crs) === true && divs[8].firstChild.src.includes(crs) === true) ||
+                (divs[0].firstChild.src.includes(crs) === true && divs[3].firstChild.src.includes(crs) === true && divs[6].firstChild.src.includes(crs) === true) || 
+                (divs[1].firstChild.src.includes(crs) === true && divs[4].firstChild.src.includes(crs) === true && divs[7].firstChild.src.includes(crs) === true) ||
+                (divs[2].firstChild.src.includes(crs) === true && divs[5].firstChild.src.includes(crs) === true && divs[8].firstChild.src.includes(crs) === true) ||
+                (divs[0].firstChild.src.includes(crs) === true && divs[4].firstChild.src.includes(crs) === true && divs[8].firstChild.src.includes(crs) === true) ||
+                (divs[2].firstChild.src.includes(crs) === true && divs[4].firstChild.src.includes(crs) === true && divs[6].firstChild.src.includes(crs) === true)
             ){
                 player1.win +=1;
                 player2.lose +=1;
                 document.querySelector("#win1").innerHTML = `Score: ${player1.win}`;
                 resetbtn.style.display= "block";
+                divs.forEach(div=>{
+                    div.removeEventListener('click',action);
+                })
                 
             } else if( // circle win player 1
-                (divs[0].firstChild.src === crc && divs[1].firstChild.src === crc && divs[2].firstChild.src === crc) || 
-                (divs[3].firstChild.src === crc && divs[4].firstChild.src === crc && divs[5].firstChild.src === crc) || 
-                (divs[6].firstChild.src === crc && divs[7].firstChild.src === crc && divs[8].firstChild.src === crc) ||
-                (divs[0].firstChild.src === crc && divs[3].firstChild.src === crc && divs[6].firstChild.src === crc) || 
-                (divs[1].firstChild.src === crc && divs[4].firstChild.src === crc && divs[7].firstChild.src === crc) ||
-                (divs[2].firstChild.src === crc && divs[5].firstChild.src === crc && divs[8].firstChild.src === crc) ||
-                (divs[0].firstChild.src === crc && divs[4].firstChild.src === crc && divs[8].firstChild.src === crc) ||
-                (divs[2].firstChild.src === crc && divs[4].firstChild.src === crc && divs[6].firstChild.src === crc)
+                (divs[0].firstChild.src.includes(crc) === true && divs[1].firstChild.src.includes(crc) === true && divs[2].firstChild.src.includes(crc) === true) || 
+                (divs[3].firstChild.src.includes(crc) === true && divs[4].firstChild.src.includes(crc) === true && divs[5].firstChild.src.includes(crc) === true) || 
+                (divs[6].firstChild.src.includes(crc) === true && divs[7].firstChild.src.includes(crc) === true && divs[8].firstChild.src.includes(crc) === true) ||
+                (divs[0].firstChild.src.includes(crc) === true && divs[3].firstChild.src.includes(crc) === true && divs[6].firstChild.src.includes(crc) === true) || 
+                (divs[1].firstChild.src.includes(crc) === true && divs[4].firstChild.src.includes(crc) === true && divs[7].firstChild.src.includes(crc) === true) ||
+                (divs[2].firstChild.src.includes(crc) === true && divs[5].firstChild.src.includes(crc) === true && divs[8].firstChild.src.includes(crc) === true) ||
+                (divs[0].firstChild.src.includes(crc) === true && divs[4].firstChild.src.includes(crc) === true && divs[8].firstChild.src.includes(crc) === true) ||
+                (divs[2].firstChild.src.includes(crc) === true && divs[4].firstChild.src.includes(crc) === true && divs[6].firstChild.src.includes(crc) === true)
             ){
                 player2.win +=1;
                 player1.lose +=1;   ; 
                 document.querySelector("#win2").innerHTML = `Score: ${player1.win}`;
                 resetbtn.style.display= "block";
+                divs.forEach(div=>{
+                    div.removeEventListener('click',action);
+                })
             } else if(counter % 9 == 0){
                 resetbtn.style.display= "block";
             }
@@ -95,3 +104,29 @@ function reset(){
     play();
 }
             
+
+function change() {
+    if(toggle.checked == true){
+        document.getElementsByTagName("body")[0].classList.add("darkmode");
+        document.getElementById("title").id = "titleDark";
+        let game = document.getElementsByClassName("game");
+        document.getElementById("h1").id="p1";
+        document.getElementById("h2").id="p2";
+        document.getElementById("reset").id ="btnDark";
+        for(let i=0; i< game.length;i++) {
+            game[i].classList.add("gameDark")
+        }
+    } else if(toggle.checked == false) {
+        document.getElementsByTagName("body")[0].classList.remove("darkmode");
+        document.getElementById("titleDark").id = "title";
+        let game = document.getElementsByClassName("game");
+        document.getElementById("p1").id="h1";
+        document.getElementById("p2").id="h2";
+        document.getElementsByTagName("p")[0].id = "p";
+        document.getElementsByTagName("p")[1].id = "p";
+        document.getElementById("btnDark").id ="reset"
+        for(let i=0; i< game.length;i++) {
+            game[i].classList.remove("gameDark")
+        }
+    }
+}

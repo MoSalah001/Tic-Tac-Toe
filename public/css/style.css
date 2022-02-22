@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-color: wheat;
+}
+
 #grid {
     display: grid;
     grid-template-areas:
@@ -14,15 +18,17 @@
 }
 
 .game {
-    border: 2px solid red;
+    border: 2px ridge red;
     height: 20vh;
     border-collapse: collapse;
+    box-shadow: none;
 }
 
 #title {
     grid-area: title;
     text-align: center;
     font-size: 8vh;
+    color: maroon;
 }
 
 #it1 {
@@ -74,8 +80,9 @@
 #player1 , #player2 {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    height: 200px;
+    height: 2.5em;
     align-self: center;
+    font-size: 2.5em;
 }
 
 img {
@@ -89,7 +96,7 @@ div {
     align-items: center;
 }
 
-#cont {
+#btn {
     width: 100%;
     height: 50px;
 }
@@ -97,9 +104,97 @@ div {
 #reset {
     margin: 0 auto;
     width: 20%;
+    height: 40px;
+    background-color: violet;
     display: none;
 }
 
 .shown {
     display: block;
+}
+
+#p , #win1 , #win2 {
+    color: orangered;
+}
+ /* Dark Mode Options */
+
+.darkmode { /* body */
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#titleDark {
+    color: darkblue;
+    grid-area: title;
+    text-align: center;
+    font-size: 8vh;
+    text-shadow: 0px 0px 10px darkcyan , 0px 0px 7px green;
+}
+
+.btn {
+    height: 50px;
+    width: 50px;
+}
+
+.gameDark {/* grid area styling */
+    border: 3px solid orangered;
+    box-shadow: 0px 0px 20px rgb(196, 127, 0) , 0px 0px 10px rgb(5, 5, 168);
+    height: 20vh;
+}
+
+#p1 , #p2 { /* player one and two */
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-self: center;
+    text-shadow: 0px 0px 5px lightcyan , 0px 0px 3px red;
+}
+
+#p1 { /* player one */
+    grid-area: playerOne;
+    color: darkblue;
+    text-align: center;
+}
+
+#p2 { /* player two */
+    grid-area: playerTwo;
+    color: darkblue;
+    text-align: center;
+}
+
+#btnDark {/* reset button */
+    display: none;
+    background-color: navy;
+    color: orangered;
+    font-size: 20px;
+    margin: 0 auto;
+    width: 20%;
+    height: 50px;
+    border: none;
+    box-shadow: 0px 0px 20px orange , 0px 0px 15px green;
+    margin-top: 40px;
+}
+
+@media only screen and (max-width:700px){
+    #title {
+        font-size: 2em;
+    }
+    #grid {
+        width: 98vw;
+        grid-template-areas:
+        "title title title"
+        "1st 2nd 3rd"
+        "4th 5th 6th"
+        "7th 8th 9th"
+        "playerOne reset playerTwo"
+        ;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    #player1 , #player2 {
+        display: grid;
+        height: 1em;
+        align-self: center;
+        font-size: 1em;
+    }
+    #btn{
+        grid-area: 'reset';
+    }
 }
