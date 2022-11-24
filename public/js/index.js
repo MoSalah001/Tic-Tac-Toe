@@ -107,6 +107,7 @@ function reset(){
 
 function change() {
     if(toggle.checked == true){
+        document.getElementById('switch-label').textContent = "Light Mode";
         document.getElementsByTagName("body")[0].classList.add("darkmode");
         document.getElementById("title").id = "titleDark";
         let game = document.getElementsByClassName("game");
@@ -117,6 +118,7 @@ function change() {
             game[i].classList.add("gameDark")
         }
     } else if(toggle.checked == false) {
+        document.getElementById('switch-label').textContent = "Dark Mode";
         document.getElementsByTagName("body")[0].classList.remove("darkmode");
         document.getElementById("titleDark").id = "title";
         let game = document.getElementsByClassName("game");

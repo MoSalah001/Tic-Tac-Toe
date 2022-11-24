@@ -107,6 +107,7 @@ div {
     height: 40px;
     background-color: violet;
     display: none;
+    border-radius: 10px;
 }
 
 .shown {
@@ -127,12 +128,36 @@ div {
     grid-area: title;
     text-align: center;
     font-size: 8vh;
-    text-shadow: 0px 0px 10px darkcyan , 0px 0px 7px green;
+    text-shadow: 0px 0px 10px yellow , 0px 0px 7px green;
 }
 
-.btn {
-    height: 50px;
+.btn { /* hide default check box */
+    display: none;
+}
+
+.label { /* label for check box */
+    display: inline-block;
+    color: red;
+    font-size: 2em;
+    position: relative;
+    padding-left: 55px;
+    top: 4px;
+}
+
+#switch-label::before { /* custom check box */
+    display: inline-block;
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
     width: 50px;
+    height: 50px;
+    background-color: black;
+}
+
+#switch:checked + #switch-label::before{ /* toggle switch change background */
+    content: "";
+    background-color: white;
 }
 
 .gameDark {/* grid area styling */
@@ -164,21 +189,22 @@ div {
     display: none;
     background-color: navy;
     color: orangered;
-    font-size: 20px;
-    margin: 0 auto;
     width: 20%;
-    height: 50px;
-    border: none;
+    height: 40px;
+    border: 2px solid goldenrod;
     box-shadow: 0px 0px 20px orange , 0px 0px 15px green;
-    margin-top: 40px;
+    border-radius: 10px;
 }
+
+
+
 
 @media only screen and (max-width:700px){
     #title {
+        margin-top: 1em;
         font-size: 2em;
     }
     #grid {
-        width: 98vw;
         grid-template-areas:
         "title title title"
         "1st 2nd 3rd"
@@ -196,5 +222,27 @@ div {
     }
     #btn{
         grid-area: 'reset';
+    }
+
+    .gameDark {/* grid area styling */
+        border: 3px solid orangered;
+        box-shadow: 0px 0px 20px rgb(196, 127, 0) , 0px 0px 10px rgb(5, 5, 168);
+        height: 20vh;
+    }
+
+    #titleDark {
+        margin-top: 1em;
+        color: darkblue;
+        grid-area: title;
+        text-align: center;
+        font-size: 2em;
+        text-shadow: 0px 0px 10px yellow , 0px 0px 7px green;
+    }
+    #btnDark {/* reset button */
+        height: 40px;
+        margin: 0;
+        border: 2px solid goldenrod;
+        border-radius: 5px;
+        font-size: 14px;
     }
 }
